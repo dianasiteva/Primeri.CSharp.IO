@@ -1,2 +1,2 @@
-# Primeri.CSharp.IO
+# Примери с файлова структура
 Primeri.CSharp.IO
