@@ -20,6 +20,12 @@ namespace IOTextFiles
 			_stable = stable;
 		}
 
+		public string getpath()
+		{
+			string _path = System.IO.Path.Combine (AppDomain.CurrentDomain.BaseDirectory, "test.txt");
+			return _path;
+		}
+
 
 
 		/// <summary>
@@ -33,7 +39,7 @@ namespace IOTextFiles
 				_temp = String.Join("\r\n",_stable.stable);
 
 				//Запис на текстов файл
-				System.IO.File.WriteAllText ("C:\\aula\\test.txt",_temp);
+				System.IO.File.WriteAllText (getpath(),_temp);
 
 				return true;
 			}catch{
@@ -42,6 +48,28 @@ namespace IOTextFiles
 			return false;
 
 		}
+
+
+		public bool open()
+		{
+			try
+			{
+				string 	_temp = System.IO.File.ReadAllText (getpath());
+				string[] _table=_temp.Replace("\r","").Split('\n');
+
+				for (int i=0;i<_table.Length;i++)
+				{
+					_stable.stable[i]=_table[i];
+				}
+
+				return true;
+			}catch{
+			}
+
+			return false;
+
+		}
+
 
 
 	}

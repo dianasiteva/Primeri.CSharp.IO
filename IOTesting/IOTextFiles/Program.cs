@@ -21,12 +21,21 @@ namespace IOTextFiles
 
 //			Console.WriteLine ( _STable.stable[0] );
 
-			if ( _io.save() )
+//			if ( _io.save() )
+//			{
+//				Console.WriteLine ( "Таблицата е запаметена." );
+//			}else{
+//				Console.WriteLine ( "Таблицата НЕ е запаметена." );
+//			}
+
+
+			if ( _io.open() )
 			{
-				Console.WriteLine ( "Таблицата е запаметена." );
+				Console.WriteLine ( "Таблицата е прочетена." );
 			}else{
-				Console.WriteLine ( "Таблицата НЕ е запаметена." );
+				Console.WriteLine ( "Таблицата НЕ е прочетена." );
 			}
+
 
 		}
 	}
