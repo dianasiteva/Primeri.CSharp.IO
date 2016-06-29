@@ -22,6 +22,15 @@ namespace IOTextFiles
 
 		public string getpath()
 		{
+
+			//Други директории
+			//string _user = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
+			string _user = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+			string _desktop = Environment.GetFolderPath(Environment.SpecialFolder.CommonDesktopDirectory);
+			Console.WriteLine(_user);
+			Console.WriteLine(_desktop);
+
+
 			string _path = System.IO.Path.Combine (AppDomain.CurrentDomain.BaseDirectory, "test.txt");
 			return _path;
 		}
