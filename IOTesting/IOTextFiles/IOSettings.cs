@@ -30,8 +30,10 @@ namespace IOTextFiles
 			Console.WriteLine(_user);
 			Console.WriteLine(_desktop);
 
-
-			string _path = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "test.txt");
+			//Програма/Settings/Settings.txt
+			//string _path = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "test.txt");
+			string _path = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Settings");
+			_path = System.IO.Path.Combine(_path, "Settings.txt");
 			return _path;
 		}
 
@@ -86,6 +88,7 @@ namespace IOTextFiles
 		{
 			try
 			{
+				iniSettings();
 				string _temp = "", _filepath = getpath();
 
 				if (System.IO.File.Exists(_filepath))          //Проверка дали пътят е валиден
@@ -114,6 +117,35 @@ namespace IOTextFiles
 			return false;
 
 		}
+
+
+
+		private void iniSettings()
+		{
+
+			try
+			{
+				bool _fileExist = System.IO.File.Exists( getpath());
+				if (!_fileExist)
+				{
+					string _directory = System.IO.Path.GetDirectoryName(  getpath());
+
+					//Застраховаме се ,че директорията съществува
+					if ( !System.IO.Directory.Exists (_directory) )
+					{
+						System.IO.Directory.CreateDirectory(_directory);
+
+					}
+					//Запаметяваме съдържанието на файла
+					save();
+				}
+			}
+			catch
+			{
+			}
+
+		}
+
 
 
 
