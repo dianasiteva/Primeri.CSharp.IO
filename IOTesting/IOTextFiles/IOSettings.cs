@@ -15,7 +15,7 @@ namespace IOTextFiles
 		/// Конструктор на клас IOTextFiles. Инициализация на класа
 		/// </summary>
 		/// <param name="stable">Масив на таблицата.</param>
-		public IOSettings ( STable stable )
+		public IOSettings(STable stable)
 		{
 			_stable = stable;
 		}
@@ -31,7 +31,7 @@ namespace IOTextFiles
 			Console.WriteLine(_desktop);
 
 
-			string _path = System.IO.Path.Combine (AppDomain.CurrentDomain.BaseDirectory, "test.txt");
+			string _path = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "test.txt");
 			return _path;
 		}
 
@@ -44,14 +44,16 @@ namespace IOTextFiles
 		{
 			try
 			{
-				string _temp ="" ;
-				_temp = String.Join("\r\n",_stable.stable);
+				string _temp = "";
+				_temp = String.Join("\r\n", _stable.stable);
 
 				//Запис на текстов файл
-				System.IO.File.WriteAllText (getpath(),_temp);
+				System.IO.File.WriteAllText(getpath(), _temp);
 
 				return true;
-			}catch{
+			}
+			catch
+			{
 			}
 
 			return false;
@@ -59,20 +61,54 @@ namespace IOTextFiles
 		}
 
 
+		//public bool open()
+		//{
+		//	try
+		//	{
+		//		string 	_temp = System.IO.File.ReadAllText (getpath());
+		//		string[] _table=_temp.Replace("\r","").Split('\n');
+
+		//		for (int i=0;i<_table.Length;i++)
+		//		{
+		//			_stable.stable[i]=_table[i];
+		//		}
+
+		//		return true;
+		//	}catch{
+		//	}
+
+		//	return false;
+
+		//}
+
+
 		public bool open()
 		{
 			try
 			{
-				string 	_temp = System.IO.File.ReadAllText (getpath());
-				string[] _table=_temp.Replace("\r","").Split('\n');
+				string _temp = "", _filepath = getpath();
 
-				for (int i=0;i<_table.Length;i++)
+				if (System.IO.File.Exists(_filepath))          //Проверка дали пътят е валиден
 				{
-					_stable.stable[i]=_table[i];
+					_temp = System.IO.File.ReadAllText(_filepath);
+					string[] _table = _temp.Replace("\r", "").Split('\n');
+
+					for (int i = 0; i < _table.Length; i++)
+					{
+						_stable.stable[i] = _table[i];
+					}
+
+					return true;
+
+				}
+				else {
+					Console.WriteLine("Не е намерен такъв път");
+					return false;
 				}
 
-				return true;
-			}catch{
+			}
+			catch
+			{
 			}
 
 			return false;

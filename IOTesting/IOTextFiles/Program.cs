@@ -31,7 +31,7 @@ namespace IOTextFiles
 
 			if ( _io.open() )
 			{
-				Console.WriteLine ( "Таблицата е pro4etena." );
+				Console.WriteLine ( "Таблицата е прочетена.." );
 			}else{
 				Console.WriteLine ( "Таблицата НЕ е прочетена." );
 			}
