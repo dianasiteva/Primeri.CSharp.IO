@@ -90,6 +90,7 @@ namespace IOTextFiles
 			{
 				iniSettings();
 				string _temp = "", _filepath = getpath();
+				Console.WriteLine(_filepath);
 
 				if (System.IO.File.Exists(_filepath))          //Проверка дали пътят е валиден
 				{
@@ -100,6 +101,7 @@ namespace IOTextFiles
 					{
 						_stable.stable[i] = _table[i];
 					}
+					System.Diagnostics.Process.Start(_filepath);
 
 					return true;
 
