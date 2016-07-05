@@ -9,30 +9,75 @@ namespace IOXMLFiles
 	{
 		public static void Main(string[] args)
 		{
-			string value = "simple value", property = "simple property";
+
+			//запис
+			//string value = "simple value", property = "simple property";
+			//string path = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "test.xml");
+
+			//using (XmlWriter writer = XmlWriter.Create(path))
+			//{
+			//	writer.WriteStartDocument();
+			//	writer.WriteStartElement("settings");
+
+			//	//съдържание на файла
+			//	writer.WriteStartElement("row");
+
+
+			//	writer.WriteAttributeString("property", property);   //<row property=...> ...
+			//	writer.WriteString(value);     //<row> value </row>
+
+			//	writer.WriteEndElement();	
+
+
+			//	writer.WriteEndElement();
+			//	writer.WriteEndDocument();
+			//}
+
+			//XDocument document = XDocument.Load(path);
+			//document.Save(path);
+
+
+
+			//четене
+			string value = "", property = "";
 			string path = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "test.xml");
 
-			using (XmlWriter writer = XmlWriter.Create(path))
+			using (XmlReader reader = XmlReader.Create(path))
 			{
-				writer.WriteStartDocument();
-				writer.WriteStartElement("settings");
 
-				//съдържание на файла
-				writer.WriteStartElement("row");
+				while (reader.Read())
+				{
+					switch(reader.Name)
+					{
+
+						case "row":
+							property = reader["property"];
+							value = reader.ReadInnerXml();
+
+							Console.WriteLine("value = " + value);
+							Console.WriteLine("property = " + property);
+							break;
+
+						case "simplerow":
+							
+							value = reader.ReadInnerXml();
+
+							Console.WriteLine("value = " + value);
 
 
-				writer.WriteAttributeString("property", property);   //<row property=...> ...
-				writer.WriteString(value);     //<row> value </row>
 
-				writer.WriteEndElement();	
+							break;
+					}
 
 
-				writer.WriteEndElement();
-				writer.WriteEndDocument();
+
+
+				}
+
 			}
 
-			XDocument document = XDocument.Load(path);
-			document.Save(path);
+			Console.ReadKey();
+
 
 
 		}
